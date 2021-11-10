@@ -6,6 +6,7 @@ export const StoreContext = React.createContext();
 export const StoreProvider = ({ children }) => {
   const [featuredArticle, setFeaturedArticle] = useState(null);
   const [articles, setArticles] = useState([]);
+  console.log(articles);
 
   useEffect(() => {
     (async function fetchArticles() {

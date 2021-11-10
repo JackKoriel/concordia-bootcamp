@@ -4,6 +4,7 @@ import { useStore } from "./contexts/Store";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ArticleCard from "./components/Cards/ArticleCard";
 
 function App() {
   const store = useStore();
@@ -18,7 +19,7 @@ function App() {
 
         {/* TODO: Blog things goes here. Use the components folder! */}
         <Container>
-          <h1>Hello 🌎</h1>
+          <ArticleCard />
         </Container>
 
         <Footer />
