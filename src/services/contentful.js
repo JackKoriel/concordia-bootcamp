@@ -4,9 +4,31 @@ const CONTENTFUL_URL = `https://cdn.contentful.com/spaces/6fmuqje9nkz0/environme
 
 // TODO: Update the method below to utilize contentful's pagination functionality to return only 6 entries
 //       NOTE: remember on "load more" it's 6 *additional* entries
+
+//this function is only needed if I wanted to return all articles at ones, but who wants that?
 export const getAllArticles = async () => {
   try {
     const response = await request(GET, CONTENTFUL_URL);
+
+    return response.items;
+  } catch (e) {
+    console.log("getAllArticles failed:", e);
+  }
+};
+
+//I am not using skip here because for some reason it's returning undefined, for today's workshop it doesn't matter but I will work on later to figure it out
+export const getPaginatedArticles = async (limit) => {
+  try {
+    const response = await request(
+      GET,
+      `${CONTENTFUL_URL}&limit=${limit}&skip=0`
+    );
+
+    //I am keeping the splice function commented here for my own reference, you need to modify the GET link to CONTENTFUL_URL and add a skip parameter after async
+    // console.log(response.items.slice(0, 6));
+    // console.log(limit);
+    // console.log("S", skip);
+    // return response.items.slice(skip, limit);
 
     return response.items;
   } catch (e) {

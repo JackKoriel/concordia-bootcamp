@@ -2,37 +2,29 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { StoreContext } from "../../contexts/Store";
 
-const ArticleCard = () => {
-  // getting articles from the store using useContext
-  const { articles } = useContext(StoreContext);
+const Featured = () => {
+  const { featuredArticle } = useContext(StoreContext);
 
   return (
-    <Container>
-      {/* mapping through each article to get the individual articles to display */}
-
-      {articles.map((article) => {
-        return (
-          <AnArticle key={article.sys.id} tabIndex="0">
-            <Img src="https://via.placeholder.com/300" alt="placeholderImage" />
-            <TextContainer>
-              <Title>{article.fields.title}</Title>
-              <Category>{article.fields.category}</Category>
-            </TextContainer>
-          </AnArticle>
-        );
-      })}
-    </Container>
+    <ContainerFeatured>
+      <CardContainer>
+        <Img src="https://via.placeholder.com/300" alt="placeholderImage" />
+        <FeaturedText>Featured</FeaturedText>
+        <TextContainer>
+          <Title>{featuredArticle.fields.title}</Title>
+          <Category>{featuredArticle.fields.category}</Category>
+        </TextContainer>
+      </CardContainer>
+    </ContainerFeatured>
   );
 };
 
-const Container = styled.div`
+const ContainerFeatured = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin-left: 70px;
   margin-right: 70px;
-  //add borders to see the actual container
-  /* border: 1px solid blue; */
   background-color: #f4e2db;
   transition: all 300ms ease-out;
   min-width: 400px;
@@ -40,7 +32,8 @@ const Container = styled.div`
     flex-direction: column;
   }
 `;
-const AnArticle = styled.div`
+
+const CardContainer = styled.div`
   border-radius: 10px;
   max-width: 400px;
   display: flex;
@@ -49,8 +42,6 @@ const AnArticle = styled.div`
   gap: 20px;
   margin: 20px;
   border: 1px solid white;
-  //add borders to see the actual article
-  /* border: 1px solid red; */
   background-color: white;
   @media only screen and (max-width: 600px) {
     max-height: 350px;
@@ -67,6 +58,7 @@ const AnArticle = styled.div`
     cursor: pointer;
   }
 `;
+
 const Img = styled.img`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -84,8 +76,17 @@ const Title = styled.h2`
   margin-bottom: 10px;
   font-size: 19px;
 `;
+
 const Category = styled.p`
   font-size: 12px;
 `;
 
-export default ArticleCard;
+const FeaturedText = styled.div`
+  margin-top: -45px;
+  margin-left: 10px;
+  font-weight: 700;
+  font-style: italic;
+  color: gray;
+`;
+
+export default Featured;
